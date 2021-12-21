@@ -58,8 +58,8 @@ async function processCsvToPdf() {
     const color = rgb(0, 0, 0);
     const size = 12;
     const font = helveticaFont;
-    let currentLineY = 550;
-    const spaceBetweenLines = 17;
+    let currentLineY = 592;
+    const spaceBetweenLines = 15.5;
     let runningMinutesTotal = 0;
 
 
@@ -67,12 +67,13 @@ async function processCsvToPdf() {
     if (data.length > 30) {
         alert('You have more than 30 entries. They will not all fit on the page');
     }
+
     // draw csv data to page
     for (let i = 0; i < data.length; i++) {
         // draw date
         const date = data[i]['Clocked In'].slice(0, 5);
         firstPage.drawText(date, {
-            x: 100,
+            x: 65,
             y: currentLineY,
             size: size,
             font: font,
@@ -84,7 +85,7 @@ async function processCsvToPdf() {
         const start = data[i]['Clocked In'];
         const cleanStart = start.slice(8, 17);
         firstPage.drawText(cleanStart, {
-            x: 143,
+            x: 117,
             y: currentLineY,
             size: size,
             font: font,
@@ -96,7 +97,7 @@ async function processCsvToPdf() {
         const stop = data[i]['Clocked Out'];
         const cleanStop = stop.slice(8, 17);
         firstPage.drawText(cleanStop, {
-            x: 193,
+            x: 173,
             y: currentLineY,
             size: size,
             font: font,
@@ -111,7 +112,7 @@ async function processCsvToPdf() {
         const minutes = difference / 60 / 1000;
         const cleanMinutes = minutes.toString() + " min";
         firstPage.drawText(cleanMinutes, {
-            x: 247,
+            x: 240,
             y: currentLineY,
             size: size,
             font: font,
@@ -137,7 +138,7 @@ async function processCsvToPdf() {
     //draw name
     firstPage.drawText('James Hall', {
         x: 100,
-        y: 630,
+        y: 667,
         size: size,
         font: font,
         color: color
@@ -147,7 +148,7 @@ async function processCsvToPdf() {
     const monthYear = document.querySelector('#monthYear').value;
     firstPage.drawText(monthYear, {
         x: 390,
-        y: 630,
+        y: 667,
         size: size,
         font: font,
         color: color
@@ -163,8 +164,8 @@ async function processCsvToPdf() {
     }
     const cleanTime = `${hours}h, ${minutes}m`
     firstPage.drawText(cleanTime, {
-        x: 247,
-        y: 5,
+        x: 240,
+        y: 60,
         size: size,
         font: font,
         color: color
