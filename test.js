@@ -70,10 +70,13 @@ async function processCsvToPdf() {
 
     // draw csv data to page
     for (let i = 0; i < data.length; i++) {
+        let regex;
         // draw date
-        const date = data[i]['Clocked In'].slice(0, 5);
+        const fullDate = data[i]['Clocked In'].slice(0, 5);
+        regex = /\d+\/\d+/;
+        const date = fullDate.match(regex)[0];
         firstPage.drawText(date, {
-            x: 65,
+            x: 72,
             y: currentLineY,
             size: size,
             font: font,
@@ -83,9 +86,10 @@ async function processCsvToPdf() {
 
         // draw start
         const start = data[i]['Clocked In'];
-        const cleanStart = start.slice(8, 17);
+        regex = /[0-9/]+ (\d+:\d+ [AP]M)/;
+        const cleanStart = start.match(regex)[1];
         firstPage.drawText(cleanStart, {
-            x: 117,
+            x: 123,
             y: currentLineY,
             size: size,
             font: font,
@@ -95,9 +99,10 @@ async function processCsvToPdf() {
 
         // draw stop
         const stop = data[i]['Clocked Out'];
-        const cleanStop = stop.slice(8, 17);
+        regex = /[0-9/]+ (\d+:\d+ [AP]M)/;
+        const cleanStop = stop.match(regex)[1];
         firstPage.drawText(cleanStop, {
-            x: 173,
+            x: 179,
             y: currentLineY,
             size: size,
             font: font,
@@ -105,7 +110,7 @@ async function processCsvToPdf() {
         })
 
 
-        // draw date
+        // draw difference
         //calculate difference in time
         const difference = new Date(stop) - new Date(start);
         //convert milliseconds to minutes
