@@ -163,7 +163,7 @@ async function processCsvToPdf() {
     // convert minutes to hours
     let minutes = runningMinutesTotal;
     let hours = 0;
-    while (minutes > 60) {
+    while (minutes >= 60) {
         minutes -= 60;
         hours += 1;
     }
