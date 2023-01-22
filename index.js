@@ -86,7 +86,7 @@ async function processCsvToPdf() {
 
         // draw start
         const start = data[i]['Clocked In'];
-        regex = /[0-9/]+ (\d+:\d+ [AP]M)/;
+        regex = /[0-9/]+ (\d+:\d+)/;
         const cleanStart = start.match(regex)[1];
         firstPage.drawText(cleanStart, {
             x: 123,
@@ -99,7 +99,7 @@ async function processCsvToPdf() {
 
         // draw stop
         const stop = data[i]['Clocked Out'];
-        regex = /[0-9/]+ (\d+:\d+ [AP]M)/;
+        regex = /[0-9/]+ (\d+:\d+)/;
         const cleanStop = stop.match(regex)[1];
         firstPage.drawText(cleanStop, {
             x: 179,
