@@ -179,5 +179,5 @@ async function processCsvToPdf() {
 
     const pdfBytes = await pdf.save();
 
-    download(pdfBytes, 'pdf-lib_page_copying_example.pdf', 'application/pdf')
+    download(pdfBytes, `James Hall ${monthYear} Timesheet`, 'application/pdf')
 }
